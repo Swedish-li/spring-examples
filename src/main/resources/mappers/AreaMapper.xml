@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lrs.dao.AreaDao">
+	<sql id="columnSql">
+		id,parent_id,name,short_name,longitude,latitude,level,sort,status
+	</sql>
+	<select id="queryById" resultType="Area">
+		SELECT
+		<include refid="columnSql" />
+		FROM tb_area WHERE id=#{id}
+	</select>
+	<insert id="insert" parameterType="Area">
+		INSERT INTO tb_area(
+		<include refid="columnSql" />
+		)
+		VALUES(#{id},#{parentId},#{name},#{shortName},#{longitude},#{latitude},#{level},#{sort},#{status})
+	</insert>
+	<select id="queryByParentId" resultType="Area">
+		SELECT
+		<include refid="columnSql" />
+		FROM tb_area WHERE parent_id=#{parentId}
+	</select>
+	<update id="update" parameterType="Area">
+		UPDATE tb_area
+		<set>
+			<if test="parentId!=null">parent_id=#{parentId},</if>
+			<if test="name!=null and name!=''">name=#{name},</if>
+			<if test="shortName!=null and shortName!=''">short_name=#{shortName},</if>
+			<if test="longitude!=null">longitude=#{longitude},</if>
+			<if test="latitude!=null ">latitude=#{latitude},</if>
+			<if test="level!=null">level=#{level},</if>
+			<if test="sort!=null">sort=#{sort},</if>
+			<if test="status!=null">status=#{status}</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM tb_area WHERE
+		id IN
+		<foreach collection="ids" separator="," open="(" close=")"
+			item="id">
+			#{id}
+		</foreach>
+	</delete>
+</mapper>
