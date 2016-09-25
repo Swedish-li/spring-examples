@@ -12,8 +12,9 @@
 	<bean id="clientBuilder" class="org.apache.http.impl.client.HttpClientBuilder">
 		<property name="connectionManager" ref="connectionManager" />
 	</bean>
-	<bean class="org.apache.http.impl.client.CloseableHttpClient" factory-bean="clientBuilder" factory-method="build"
-		scope="prototype" />
+	<!-- httpClient为线程安全的，可以使用单例  -->
+	<bean class="org.apache.http.impl.client.CloseableHttpClient"
+		factory-bean="clientBuilder" factory-method="build" />
 
 	<bean id="requestConfigBuilder" class="org.apache.http.client.config.RequestConfig.Builder">
 		<property name="connectTimeout" value="${http.connectTimeout}"></property>
