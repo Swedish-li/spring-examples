@@ -21,14 +21,12 @@ public class AreaController {
 	private AreaService areaService;
 
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
-	//@Cache(expire=600, autoload=true, key="'area.getId'+#hash(#args[0])")
 	public ResponseEntity<Area> getArea(@PathVariable("id") Integer id) {
 		Area area = areaService.queryArea(id);
 		return new ResponseEntity<Area>(area, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "list/{parentId}", method = RequestMethod.GET)
-	//@Cache(expire=600, autoload=true, key="'areas'+#hash(#args[0])")
 	public ResponseEntity<List<Area>> getAreas(
 			@PathVariable("parentId") Integer parentId) {
 		List<Area> areas = areaService.queryAreas(parentId);

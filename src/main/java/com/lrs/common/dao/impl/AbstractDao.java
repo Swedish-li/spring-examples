@@ -16,6 +16,10 @@ public abstract class AbstractDao<T, ID extends Serializable> {
 	@Resource
 	protected SqlSession sqlSession;
 
+	public SqlSession getSqlSession(){
+		return  sqlSession;
+	}
+
 	/** 子类实现接口名 */
 	private Class<?> subClassInterfaceClass = null;
 
