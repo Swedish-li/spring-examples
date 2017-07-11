@@ -111,7 +111,8 @@ public class TestSimpleMongodb {
         client.close();
     }
 
-    @Test
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	@Test
     public void testQueryById() {
         MongoClient client = getMongoClient();
         MongoCollection collection = getCollection(client);

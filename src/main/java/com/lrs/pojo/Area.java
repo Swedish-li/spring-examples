@@ -3,25 +3,25 @@ package com.lrs.pojo;
 import java.io.Serializable;
 
 public class Area implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
-	
+
 	private String name;
-	
+
 	private String shortName;
-	
+
 	private Integer parentId;
-	
+
 	private Float longitude;
-	
+
 	private Float latitude;
-	
+
 	private Integer level;
-	
+
 	private Integer sort;
-	
+
 	private Integer status;
 
 	public Area() {

@@ -6,49 +6,59 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.lrs.dao.AreaDao;
+import com.lrs.mapper.AreaMapper;
 import com.lrs.pojo.Area;
 
 @Service
 public class AreaService {
 	@Resource
-	private AreaDao areaDao;
+	private AreaMapper mapper;
+
 	/**
 	 * 根据id查询
+	 * 
 	 * @param id
 	 * @return
 	 */
 	public Area queryArea(Integer id) {
-		return this.areaDao.queryById(id);
+		return mapper.queryById(id);
 	}
+
 	/**
 	 * 更加parentId查询
+	 * 
 	 * @param parentId
 	 * @return
 	 */
 	public List<Area> queryAreas(Integer parentId) {
-		return this.areaDao.queryByParentId(parentId);
+		return mapper.queryByParentId(parentId);
 	}
+
 	/**
 	 * 保存
+	 * 
 	 * @param area
 	 */
 	public void saveArea(Area area) {
-		areaDao.insert(area);
+		mapper.insert(area);
 	}
+
 	/**
 	 * 更新
+	 * 
 	 * @param area
 	 */
 	public void update(Area area) {
-		areaDao.update(area);
+		mapper.update(area);
 	}
+
 	/**
 	 * 批量删除
+	 * 
 	 * @param ids
 	 */
-	public void delete(Integer...ids){
-		areaDao.delete(ids);
+	public void delete(Integer... ids) {
+		mapper.delete(ids);
 	}
-	
+
 }

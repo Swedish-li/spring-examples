@@ -44,9 +44,10 @@ public class AreaController {
 		areaService.update(area);
 		return new ResponseEntity<Void>(HttpStatus.ACCEPTED);
 	}
-	@RequestMapping(method=RequestMethod.DELETE)
-	public ResponseEntity<Void> delete(Integer id){
-		
+
+	@RequestMapping(method = RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(Integer id) {
+
 		return new ResponseEntity<Void>(HttpStatus.ACCEPTED);
 	}
 }

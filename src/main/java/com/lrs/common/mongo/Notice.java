@@ -10,101 +10,102 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 
 /**
- * mongodb 实体类
- * Created by liruishi on 2017/1/25.
+ * mongodb 实体类 Created by liruishi on 2017/1/25.
  */
 @Document
 public class Notice {
 
-    public Notice() {
+	public Notice() {
 
-    }
-    @PersistenceConstructor
-    public Notice(String id, int siteId, String creator, String title, String content, Date createTime, Date updateTime) {
-        this.id = id;
-        this.siteId = siteId;
-        this.creator = creator;
-        this.title = title;
-        this.content = content;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-    }
+	}
 
-    @Id
-    private String id;
+	@PersistenceConstructor
+	public Notice(String id, int siteId, String creator, String title, String content, Date createTime,
+			Date updateTime) {
+		this.id = id;
+		this.siteId = siteId;
+		this.creator = creator;
+		this.title = title;
+		this.content = content;
+		this.createTime = createTime;
+		this.updateTime = updateTime;
+	}
 
-    @Indexed
-    private int siteId;
+	@Id
+	private String id;
 
-    private String creator;
+	@Indexed
+	private int siteId;
 
-    private String title;
+	private String creator;
 
-    private String content;
+	private String title;
 
-    @Indexed(direction = IndexDirection.DESCENDING)
-    private Date createTime;
+	private String content;
 
-    private Date updateTime;
+	@Indexed(direction = IndexDirection.DESCENDING)
+	private Date createTime;
 
-    public String getId() {
-        return id;
-    }
+	private Date updateTime;
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public int getSiteId() {
-        return siteId;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public void setSiteId(int siteId) {
-        this.siteId = siteId;
-    }
+	public int getSiteId() {
+		return siteId;
+	}
 
-    public String getCreator() {
-        return creator;
-    }
+	public void setSiteId(int siteId) {
+		this.siteId = siteId;
+	}
 
-    public void setCreator(String creator) {
-        this.creator = creator;
-    }
+	public String getCreator() {
+		return creator;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public void setCreator(String creator) {
+		this.creator = creator;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public String getContent() {
-        return content;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+	public String getContent() {
+		return content;
+	}
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+	public void setContent(String content) {
+		this.content = content;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public Date getCreateTime() {
+		return createTime;
+	}
 
-    public Date getUpdateTime() {
-        return updateTime;
-    }
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
+	public Date getUpdateTime() {
+		return updateTime;
+	}
 
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this);
-    }
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
+	}
 }

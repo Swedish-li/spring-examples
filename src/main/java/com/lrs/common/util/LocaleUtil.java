@@ -3,9 +3,10 @@ package com.lrs.common.util;
 import java.util.Locale;
 
 import org.springframework.context.MessageSource;
+
 /**
- * 国际化信息 
- * ISO Language Code：http://www.loc.gov/standards/iso639-2/php/English_list.php
+ * 国际化信息 ISO Language
+ * Code：http://www.loc.gov/standards/iso639-2/php/English_list.php
  * 
  * @author Swedish-li
  * 
@@ -31,7 +32,6 @@ public class LocaleUtil {
 	public String getMessage(String key, String language, Object... args) {
 		return message.getMessage(key, args, getLocale(language));
 	}
-	
 
 	private Locale getLocale(String language) {
 		if (VI_VN.equals(language)) {

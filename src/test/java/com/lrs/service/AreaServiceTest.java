@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -14,25 +16,22 @@ import com.lrs.pojo.Area;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring/applicationContext.xml")
+@FixMethodOrder(MethodSorters.NAME_ASCENDING) // 根据方法名的字典顺序
 public class AreaServiceTest extends AbstractJUnit4SpringContextTests {
 	@Resource
 	private AreaService areaService;
-	@Test
-	public void testQueryArea() {
-		Area area=areaService.queryArea(2342334);
-		System.out.println(area);
-	}
+	
 
 	@Test
 	public void testQueryAreas() {
-		List<Area> areas =areaService.queryAreas(0);
+		List<Area> areas =areaService.queryAreas(-1);
 		for (Area area : areas) {
 			System.out.println(area);
 		}
 	}
 
 	@Test
-	public void testSaveArea() {
+	public void test1SaveArea() {
 		Area area1=new Area();
 		area1.setId(2342334);
 		area1.setName("英国");
@@ -46,9 +45,15 @@ public class AreaServiceTest extends AbstractJUnit4SpringContextTests {
 		areaService.saveArea(area1);
 		
 	}
-
+	
 	@Test
-	public void testUpdate() {
+	public void test2QueryArea() {
+		Area area=areaService.queryArea(2342334);
+		System.out.println(area);
+	}
+	
+	@Test
+	public void test3Update() {
 		Area area1=new Area();
 		area1.setId(2342334);
 		area1.setName("英国22222");
@@ -63,7 +68,7 @@ public class AreaServiceTest extends AbstractJUnit4SpringContextTests {
 	}
 
 	@Test
-	public void testDelete() {
+	public void test4Delete() {
 		areaService.delete(2342334);
 	}
 

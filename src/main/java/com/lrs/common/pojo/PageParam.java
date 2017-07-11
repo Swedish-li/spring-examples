@@ -1,6 +1,8 @@
 package com.lrs.common.pojo;
+
 /**
- *查询数据需用创建时间进行排
+ * 查询数据需用创建时间进行排
+ * 
  * @author lrs
  *
  * @param <T>
