@@ -5,22 +5,26 @@
 	<sql id="columnSql">
 		id,parent_id,name,short_name,longitude,latitude,level,sort,status
 	</sql>
+	
 	<select id="queryById" resultType="Area">
 		SELECT
 		<include refid="columnSql" />
 		FROM tb_area WHERE id=#{id}
 	</select>
+	
 	<insert id="insert" parameterType="Area">
 		INSERT INTO tb_area(
 		<include refid="columnSql" />
 		)
 		VALUES(#{id},#{parentId},#{name},#{shortName},#{longitude},#{latitude},#{level},#{sort},#{status})
 	</insert>
+	
 	<select id="queryByParentId" resultType="Area">
 		SELECT
 		<include refid="columnSql" />
-		FROM tb_area WHERE parent_id=#{parentId}
+		FROM tb_area WHERE parent_id=#{parentId} ORDER BY id ASC
 	</select>
+	
 	<update id="update" parameterType="Area">
 		UPDATE tb_area
 		<set>

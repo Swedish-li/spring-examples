@@ -1,11 +1,11 @@
-package com.lrs.common.dao;
+package com.lrs.common.mapper;
 
 import java.io.Serializable;
 import java.util.List;
 
 import com.lrs.common.pojo.PageParam;
 
-public interface IBaseDao<T, ID extends Serializable> {
+public interface BaseMapper<T, ID extends Serializable> {
 	/**
 	 * 根据id查询
 	 * 

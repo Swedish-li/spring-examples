@@ -11,6 +11,8 @@ import com.lrs.pojo.Area;
 
 @Service
 public class AreaService {
+	
+	
 	@Resource
 	private AreaMapper mapper;
 
