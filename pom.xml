@@ -9,6 +9,7 @@
 		<spring.version>4.2.6.RELEASE</spring.version>
 		<mybatis.version>3.4.0</mybatis.version>
 		<mysql.version>5.1.38</mysql.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -167,6 +168,7 @@
 				<configuration>
 					<port>8088</port>
 					<path>/</path>
+					<uriEncoding>UTF-8</uriEncoding>
 				</configuration>
 			</plugin>
 		</plugins>

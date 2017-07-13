@@ -1,5 +1,6 @@
 package com.lrs.message;
 
+import java.text.NumberFormat;
 import java.util.Locale;
 
 import org.junit.Test;
@@ -10,6 +11,19 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.lrs.common.util.LocaleUtil;
+import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.*;
+
+/**
+ * Locale
+ * 
+ * 1、一种语言 ，2、一个位置(可选)， 3、一个变量(可选)
+ * 
+ * ISO-369-1,语言代码，ISO-3166-1,国家代码
+ * 
+ * @author Swedish-li
+ *
+ */
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring/applicationContext.xml")
@@ -63,5 +77,22 @@ public class MessageSourceTest {
 		System.out.println(cn);
 		String en = local.getMessage("best.player", LocaleUtil.EN_US, "tom");
 		System.out.println(en);
+	}
+
+	// 数字格式化
+	@Test
+	public void testNumberFormat() {
+		double num = 123456.79;
+		Locale deLocale = Locale.GERMANY;
+		NumberFormat deFormat = NumberFormat.getCurrencyInstance(deLocale);
+		
+		Locale chLocale = Locale.CHINA;
+		NumberFormat chFormat = NumberFormat.getCurrencyInstance(chLocale);
+		String deRs = deFormat.format(num);
+		String chRs = chFormat.format(num);
+		
+		assertThat(deRs, equalTo("123.456,79 €"));
+		assertThat(chRs, equalTo("￥123,456.79"));
+		
 	}
 }
