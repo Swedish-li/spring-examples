@@ -1,6 +1,7 @@
 package com.lrs.mongo;
 
 import com.lrs.common.mongo.Notice;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.data.mongodb.core.MongoOperations;
@@ -15,6 +16,7 @@ import java.util.Date;
  * Mongodb 测试类
  * Created by liruishi on 2017/1/25.
  */
+@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring/mongodb-config.xml")
 public class TestMongoTemplate {

@@ -9,6 +9,7 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import org.bson.Document;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +22,7 @@ import java.util.List;
  * bson依赖是mongoDB提供的BSON操作工具
  * Created by liruishi on 2017/1/25.
  */
+@Ignore
 public class TestSimpleMongodb {
     private final static Logger log = LoggerFactory.getLogger(TestSimpleMongodb.class);
 
