@@ -10,9 +10,9 @@ public interface AreaMapper extends BaseMapper<Area, Integer> {
 	/**
 	 * 根据地址父id，查询地址信息列表
 	 * 
-	 * @param parnetId
+	 * @param parentId
 	 * @return
 	 */
-	public List<Area> queryByParentId(Integer parentId);
+    List<Area> queryByParentId(Integer parentId);
 	
 }

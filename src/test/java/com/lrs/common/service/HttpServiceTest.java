@@ -23,7 +23,7 @@ public class HttpServiceTest extends AbstractJUnit4SpringContextTests {
     HttpService httpService;
 
     @Test
-    public void testDoGetString() throws ClientProtocolException, IOException {
+    public void testDoGetString() throws IOException {
         String str = httpService.doGet("http://www.baidu.com");
         System.out.println(str);
     }
@@ -31,7 +31,7 @@ public class HttpServiceTest extends AbstractJUnit4SpringContextTests {
 
     @Ignore
     @Test
-    public void testDoPostString() throws ClientProtocolException, IOException {
+    public void testDoPostString() throws IOException {
         HttpResult result = httpService.doPost("http://www.baidu.com");
         System.out.println(result);
     }

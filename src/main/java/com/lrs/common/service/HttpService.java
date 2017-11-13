@@ -39,7 +39,7 @@ public class HttpService {
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 */
-	public String doGet(String url) throws ClientProtocolException, IOException {
+	public String doGet(String url) throws IOException {
 		// 创建http GET请求
 		HttpGet httpGet = new HttpGet(url);
 		httpGet.setConfig(requestConfig);
@@ -69,7 +69,7 @@ public class HttpService {
 	 * @throws IOException
 	 * @throws URISyntaxException
 	 */
-	public String doGet(String url, Map<String, Object> params) throws ClientProtocolException, IOException,
+	public String doGet(String url, Map<String, Object> params) throws IOException,
 			URISyntaxException {
 		// 定义请求的参数
 		URIBuilder builder = new URIBuilder(url);
@@ -87,7 +87,7 @@ public class HttpService {
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 */
-	public HttpResult doPost(String url) throws ClientProtocolException, IOException {
+	public HttpResult doPost(String url) throws IOException {
 		return this.doPost(url, null);
 	}
 
@@ -100,8 +100,8 @@ public class HttpService {
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 */
-	public HttpResult doPost(String url, Map<String, Object> params) throws ClientProtocolException,
-			IOException {
+	public HttpResult doPost(String url, Map<String, Object> params) throws
+            IOException {
 		// 创建http POST请求
 		HttpPost httpPost = new HttpPost(url);
 		httpPost.setConfig(requestConfig);
