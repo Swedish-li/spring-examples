@@ -46,6 +46,7 @@ public class AreaService {
      *
      * @param area 区域信息
      */
+    @CacheEvict(allEntries = true)
     public void saveArea(Area area) {
         mapper.insert(area);
     }

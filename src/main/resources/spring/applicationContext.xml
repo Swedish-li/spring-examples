@@ -41,6 +41,7 @@
 		<property name="mapperLocations" value="classpath:mappers/*.xml" />
 		<property name="typeAliasesPackage" value="com.lrs.pojo" />
 	</bean>
+
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"
 		scope="prototype">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
