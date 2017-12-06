@@ -20,12 +20,12 @@ public class AreaService {
     private AreaMapper mapper;
 
     /**
-     * 根据id查询
+     * 根据id查询(不缓存null)
      *
      * @param id 区域id
      * @return id 所对应的区域详情
      */
-    @Cacheable(key = "'queryArea_' + #id", condition = "null != #id")
+    @Cacheable(key = "'queryArea_' + #id", condition = "null != #id" ,unless = "#result == null")
     public Area queryArea(Integer id) {
         return mapper.queryById(id);
     }
