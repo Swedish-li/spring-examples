@@ -25,7 +25,7 @@ public class AreaService {
      * @param id 区域id
      * @return id 所对应的区域详情
      */
-    @Cacheable(key = "'queryArea_' + #id", condition = "null != #id" ,unless = "#result == null")
+    @Cacheable(key = " #root.methodName + '_' + #id", condition = "null != #id" ,unless = "#result == null")
     public Area queryArea(Integer id) {
         return mapper.queryById(id);
     }
@@ -36,7 +36,7 @@ public class AreaService {
      * @param parentId 区域父id
      * @return 子区域列表
      */
-    @Cacheable(key = "'queryAreas_' + #parentId")
+    @Cacheable(key = " #root.methodName + '_' + #parentId",unless = " #result == null || #result.size() <= 0")
     public List<Area> queryAreas(Integer parentId) {
         return mapper.queryByParentId(parentId);
     }
