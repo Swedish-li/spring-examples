@@ -6,11 +6,11 @@
 *.iml
 out
 gen
-/target/
+target
 
 # eclipse
-/.classpath
-/.project
-/.settings/
+.classpath
+.project
+.settings
 /bin/
 *.log
