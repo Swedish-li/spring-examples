@@ -192,5 +192,6 @@
     <modules>
         <module>spring-mybatis-example</module>
         <module>spring-property-example</module>
+        <module>spring-bean-example</module>
     </modules>
 </project>
