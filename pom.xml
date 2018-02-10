@@ -14,6 +14,8 @@
         <java.version>1.8</java.version>
         <lettuce.version>5.0.1.RELEASE</lettuce.version>
         <jackson.version>2.9.2</jackson.version>
+        <jetty.version>9.4.6.v20170531</jetty.version>
+        <logback.version>1.2.3</logback.version>
     </properties>
 
     <dependencyManagement>
@@ -33,6 +35,14 @@
                 <version>3.1.0</version>
                 <scope>provided</scope>
             </dependency>
+
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-web-api</artifactId>
+                <version>7.0</version>
+                <scope>provided</scope>
+            </dependency>
+
 
             <dependency>
                 <groupId>org.springframework.data</groupId>
@@ -149,6 +159,29 @@
                 <scope>test</scope>
             </dependency>
 
+            <!-- logback -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.25</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-access</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -173,6 +206,12 @@
                     <artifactId>maven-shade-plugin</artifactId>
                     <version>3.0.0</version>
                 </plugin>
+
+                <plugin>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <version>${jetty.version}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -193,5 +232,6 @@
         <module>spring-mybatis-example</module>
         <module>spring-property-example</module>
         <module>spring-bean-example</module>
+        <module>spring-mvc-example</module>
     </modules>
 </project>
