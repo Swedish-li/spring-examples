@@ -1,5 +1,6 @@
 package com.lrs.spring.mvc;
 
+import com.lrs.spring.app.AppConfig;
 import com.lrs.spring.mvc.config.MvcConfig;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -17,7 +18,9 @@ public class WebInitializer implements WebApplicationInitializer {
     public void onStartup(ServletContext servletContext) throws ServletException {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
         // 注册配置类
+        context.register(AppConfig.class);
         context.register(MvcConfig.class);
+
 
         // 设置servlet上下文
         context.setServletContext(servletContext);
