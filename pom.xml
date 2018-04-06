@@ -240,5 +240,6 @@
         <module>spring-property-example</module>
         <module>spring-bean-example</module>
         <module>spring-mvc-example</module>
+        <module>webjars-example</module>
     </modules>
 </project>

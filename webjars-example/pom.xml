@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>spring-examples</artifactId>
+        <groupId>com.lrs</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>webjars-example</artifactId>
+
+    <properties>
+        <bootstrap.version>3.3.7</bootstrap.version>
+        <angular.version>1.6.9</angular.version>
+        <moment.version>2.22.0</moment.version>
+        <angular-ui-router.version>1.0.15</angular-ui-router.version>
+        <angular-bootstrap.version>2.5.0</angular-bootstrap.version>
+        <webjars.version>0.33</webjars.version>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+        </dependency>
+
+        <!-- js 依赖-->
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>${bootstrap.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.webjars.bower</groupId>
+                    <artifactId>jquery</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>angular</artifactId>
+            <version>${angular.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>angular-bootstrap</artifactId>
+            <version>${angular-bootstrap.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>moment</artifactId>
+            <version>${moment.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>angular-ui-router</artifactId>
+            <version>${angular-ui-router.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>webjars-locator</artifactId>
+            <version>${webjars.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <configuration>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <webApp>
+                        <contextPath>/</contextPath>
+                    </webApp>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
