@@ -165,6 +165,11 @@
                 <scope>test</scope>
             </dependency>
 
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>2.3.28</version>
+            </dependency>
 
             <!-- logback -->
             <dependency>
@@ -241,5 +246,6 @@
         <module>spring-bean-example</module>
         <module>spring-mvc-example</module>
         <module>webjars-example</module>
+        <module>freemarker-example</module>
     </modules>
 </project>
