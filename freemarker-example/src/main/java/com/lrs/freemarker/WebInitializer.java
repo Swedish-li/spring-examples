@@ -2,7 +2,10 @@ package com.lrs.freemarker;
 
 import com.lrs.freemarker.config.FreemarkerConfig;
 import com.lrs.freemarker.config.MvcConfig;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.Filter;
 
 public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
@@ -26,5 +29,19 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
         return new String[]{
                 "/"
         };
+    }
+
+    @Override
+    protected Filter[] getServletFilters() {
+        return new Filter[]{
+                encodingFilter()
+        };
+    }
+
+    private Filter encodingFilter() {
+        CharacterEncodingFilter filter = new CharacterEncodingFilter();
+        filter.setEncoding("UTF-8");
+        filter.setForceEncoding(true);
+        return filter;
     }
 }
