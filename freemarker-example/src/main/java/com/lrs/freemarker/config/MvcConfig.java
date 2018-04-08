@@ -7,12 +7,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.validation.MessageCodesResolver;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -24,20 +26,25 @@ import java.util.TimeZone;
 @ComponentScan("com.lrs.freemarker.controller")
 public class MvcConfig implements WebMvcConfigurer {
 
-    private Map<String, Object> freemarkerAttr() {
-        Map<String, Object> attr = new HashMap<>();
-        attr.put("contentType", "text/html;charset=UTF-8");
-        attr.put("requestContextAttribute", "ctx");
-        attr.put("exposeSpringMacroHelpers", true);
-        return attr;
-    }
-
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
-        registry.freeMarker()
-                .suffix(".ftl")
-                .cache(false)
-                .attributes(freemarkerAttr());
+        registry.viewResolver(freeMarker());
+    }
+
+    private ViewResolver freeMarker() {
+        FreeMarkerViewResolver viewResolver = new FreeMarkerViewResolver();
+        viewResolver.setContentType("text/html;charset=UTF-8");
+        viewResolver.setExposeSpringMacroHelpers(true);
+        viewResolver.setAllowRequestOverride(false);
+        viewResolver.setAllowSessionOverride(true);
+
+        viewResolver.setExposeRequestAttributes(true);
+        viewResolver.setCache(false);
+        viewResolver.setOrder(1);
+
+        viewResolver.setSuffix(".ftl");
+        viewResolver.setRequestContextAttribute("request");
+        return viewResolver;
     }
 
     @Override

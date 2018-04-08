@@ -11,10 +11,9 @@ import java.util.Date;
 public class IndexController {
 
     @RequestMapping("index")
-    public String index(Model model, HttpServletResponse response) {
+    public String index(Model model) {
         model.addAttribute("val", "FreeMarker");
         model.addAttribute("nowDate", new Date());
-        response.setContentType("text/html; charset=utf-8");
         return "index";
     }
 }
