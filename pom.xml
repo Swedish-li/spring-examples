@@ -7,7 +7,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <spring.version>5.0.2.RELEASE</spring.version>
+        <spring.version>5.0.5.RELEASE</spring.version>
         <mybatis.version>3.4.0</mybatis.version>
         <mysql.version>5.1.38</mysql.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,6 +16,13 @@
         <jackson.version>2.9.2</jackson.version>
         <jetty.version>9.4.6.v20170531</jetty.version>
         <logback.version>1.2.3</logback.version>
+        <quartz.version>2.3.0</quartz.version>
+        <httpcomponents.version>4.5.2</httpcomponents.version>
+        <junit.version>4.12</junit.version>
+        <lang3.version>3.5</lang3.version>
+        <mockito.version>2.13.0</mockito.version>
+        <freemarker.version>2.3.28</freemarker.version>
+        <slf4j.version>1.7.25</slf4j.version>
     </properties>
 
     <dependencyManagement>
@@ -71,12 +78,7 @@
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
             </dependency>
-            <!-- log -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>1.7.8</version>
-            </dependency>
+
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
@@ -86,7 +88,7 @@
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpclient</artifactId>
-                <version>4.5.2</version>
+                <version>${httpcomponents.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.aspectj</groupId>
@@ -119,7 +121,7 @@
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
-                <version>3.5</version>
+                <version>${lang3.version}</version>
             </dependency>
 
             <!-- mongodb -->
@@ -143,13 +145,13 @@
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>4.12</version>
+                <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>2.13.0</version>
+                <version>${mockito.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -168,14 +170,26 @@
             <dependency>
                 <groupId>org.freemarker</groupId>
                 <artifactId>freemarker</artifactId>
-                <version>2.3.28</version>
+                <version>${freemarker.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.quartz-scheduler</groupId>
+                <artifactId>quartz</artifactId>
+                <version>${quartz.version}</version>
+            </dependency>
+
+            <!-- log -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
             <!-- logback -->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>1.7.25</version>
+                <version>${slf4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>ch.qos.logback</groupId>
@@ -247,5 +261,6 @@
         <module>spring-mvc-example</module>
         <module>webjars-example</module>
         <module>freemarker-example</module>
+        <module>quartz-example</module>
     </modules>
 </project>
