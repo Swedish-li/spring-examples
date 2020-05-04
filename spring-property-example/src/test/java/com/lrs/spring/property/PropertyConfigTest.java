@@ -25,17 +25,13 @@ public class PropertyConfigTest {
 
         assertThat(propertyConfig.str, equalTo("spring.property"));
 
-        assertThat(propertyConfig.classProperty,
-                equalTo("その言葉の意味を探し始める"));
+        assertThat(propertyConfig.classProperty, equalTo("その言葉の意味を探し始める"));
 
-        assertThat(IOUtils.toString(propertyConfig.file.getURL(), "UTF-8"),
-                equalTo("ヴァイオレット・エヴァーガーデン"));
+        assertThat(IOUtils.toString(propertyConfig.file.getURL(), "UTF-8"), equalTo("ヴァイオレット・エヴァーガーデン"));
 
-        assertThat(propertyConfig.serverName,
-                equalTo("Swedish-li"));
+        assertThat(propertyConfig.serverName, equalTo("Swedish-li"));
 
-        assertThat(propertyConfig.env.getProperty("server.name"),
-                equalTo("Swedish-li"));
+        assertThat(propertyConfig.env.getProperty("server.name"), equalTo("Swedish-li"));
 
         System.out.println(propertyConfig.osName);
         System.out.println(propertyConfig.randomNumber);

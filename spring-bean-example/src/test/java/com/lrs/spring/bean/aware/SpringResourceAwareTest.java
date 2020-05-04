@@ -1,6 +1,5 @@
 package com.lrs.spring.bean.aware;
 
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -20,7 +19,7 @@ public class SpringResourceAwareTest {
     private AbstractApplicationContext context;
 
     @BeforeClass
-    public static void beforeClass(){
+    public static void beforeClass() {
 
     }
 
@@ -35,8 +34,9 @@ public class SpringResourceAwareTest {
 
     @Test
     public void testResource() throws IOException {
-        String str = "The Apache Commons CLI library provides an API for parsing command line options passed to programs.\r\n" +
-                "It's also able to print help messages detailing the options available for a command line tool.";
+        String str = "The Apache Commons CLI library provides an API for parsing command line options passed to programs."
+                + System.lineSeparator()
+                + "It's also able to print help messages detailing the options available for a command line tool.";
         assertThat(getAware().getResource(), equalTo(str));
     }
 
@@ -57,11 +57,11 @@ public class SpringResourceAwareTest {
 
     @Test
     public void testMessageSource() {
-        Object[] args = new Object[]{"jack"};
+        Object[] args = new Object[] { "jack" };
         SpringResourceAware aware = getAware();
 
-        assertThat(aware.getEnglishMsg(args),equalTo("Thank you, jack"));
-        assertThat(aware.getChineseMsg(args),equalTo("谢谢你, jack"));
+        assertThat(aware.getEnglishMsg(args), equalTo("Thank you, jack"));
+        assertThat(aware.getChineseMsg(args), equalTo("谢谢你, jack"));
     }
 
     @Test

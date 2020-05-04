@@ -1,6 +1,5 @@
 package com.lrs.freemarker.controller;
 
-
 import com.lrs.freemarker.config.FreemarkerConfig;
 import com.lrs.freemarker.config.MvcConfig;
 import org.junit.Before;
@@ -22,18 +21,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextHierarchy({
-//        @ContextConfiguration(classes = {}),
-        @ContextConfiguration(classes = {
-                MvcConfig.class,
-                FreemarkerConfig.class})
-})
+        // @ContextConfiguration(classes = {}),
+        @ContextConfiguration(classes = { MvcConfig.class, FreemarkerConfig.class }) })
 public class IndexControllerTest {
 
     @Autowired
     private WebApplicationContext wac;
 
     private MockMvc mockMvc;
-
 
     @Before
     public void setUp() {
@@ -42,9 +37,7 @@ public class IndexControllerTest {
 
     @Test
     public void index() throws Exception {
-        this.mockMvc.perform(get("/index"))
-                .andExpect(status().isOk())
-                .andExpect(model().attribute("val", "FreeMarker"))
+        this.mockMvc.perform(get("/index")).andExpect(status().isOk()).andExpect(model().attribute("val", "FreeMarker"))
                 .andExpect(model().attributeExists("nowDate"));
 
     }
