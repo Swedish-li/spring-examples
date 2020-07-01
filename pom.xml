@@ -16,7 +16,7 @@
         <jackson.version>2.11.0</jackson.version>
         <jetty.version>9.4.6.v20170531</jetty.version>
         <logback.version>1.2.3</logback.version>
-        <quartz.version>2.3.0</quartz.version>
+        <quartz.version>2.3.2</quartz.version>
         <httpcomponents.version>4.5.2</httpcomponents.version>
         <junit.version>4.12</junit.version>
         <lang3.version>3.5</lang3.version>
