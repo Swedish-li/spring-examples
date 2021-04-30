@@ -7,7 +7,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <spring.version>5.0.5.RELEASE</spring.version>
+        <spring.version>5.0.19.RELEASE</spring.version>
         <mybatis.version>3.4.0</mybatis.version>
         <mysql.version>8.0.16</mysql.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
