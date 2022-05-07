@@ -15,7 +15,7 @@
         <lettuce.version>5.0.1.RELEASE</lettuce.version>
         <jackson.version>2.12.6.1</jackson.version>
         <jetty.version>9.4.46.v20220331</jetty.version>
-        <logback.version>1.2.3</logback.version>
+        <logback.version>1.2.9</logback.version>
         <quartz.version>2.3.2</quartz.version>
         <httpcomponents.version>4.5.13</httpcomponents.version>
         <junit.version>4.13.1</junit.version>
