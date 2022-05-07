@@ -1,11 +1,6 @@
 package com.lrs.common.service;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
+import com.lrs.common.pojo.HttpResult;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.config.RequestConfig;
@@ -20,7 +15,11 @@ import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.lrs.common.pojo.HttpResult;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class HttpService {
@@ -43,31 +42,19 @@ public class HttpService {
 		// 创建http GET请求
 		HttpGet httpGet = new HttpGet(url);
 		httpGet.setConfig(requestConfig);
-		CloseableHttpResponse response = null;
-		try {
+		try (CloseableHttpResponse response = httpClient.execute(httpGet)) {
 			// 执行请求
-			response = httpClient.execute(httpGet);
 			// 判断返回状态是否为200
 			if (response.getStatusLine().getStatusCode() == 200) {
 				return EntityUtils.toString(response.getEntity(), "UTF-8");
 			}
 			return null;
-		} finally {
-			if (response != null) {
-				response.close();
-			}
 		}
 	}
 
 	/**
 	 * 带有参数的GET请求
-	 * 
-	 * @param url
-	 * @param params
-	 * @return
-	 * @throws ClientProtocolException
-	 * @throws IOException
-	 * @throws URISyntaxException
+	 *
 	 */
 	public String doGet(String url, Map<String, Object> params) throws IOException,
 			URISyntaxException {
@@ -81,11 +68,7 @@ public class HttpService {
 
 	/**
 	 * 执行不带参数的POST请求
-	 * 
-	 * @param url
-	 * @return
-	 * @throws ClientProtocolException
-	 * @throws IOException
+	 *
 	 */
 	public HttpResult doPost(String url) throws IOException {
 		return this.doPost(url, null);
@@ -96,9 +79,6 @@ public class HttpService {
 	 * 
 	 * @param url
 	 * @param params
-	 * @return
-	 * @throws ClientProtocolException
-	 * @throws IOException
 	 */
 	public HttpResult doPost(String url, Map<String, Object> params) throws
             IOException {
@@ -107,7 +87,7 @@ public class HttpService {
 		httpPost.setConfig(requestConfig);
 		if (null != params) {
 			// 设置post参数
-			List<NameValuePair> parameters = new ArrayList<NameValuePair>(0);
+			List<NameValuePair> parameters = new ArrayList<>(0);
 			for (Map.Entry<String, Object> entry : params.entrySet()) {
 				if (null == entry.getValue()) {
 					// 忽略该参数
@@ -121,10 +101,8 @@ public class HttpService {
 			// 将请求实体设置到httpPost对象中
 			httpPost.setEntity(formEntity);
 		}
-		CloseableHttpResponse response = null;
-		try {
+		try (CloseableHttpResponse response = this.httpClient.execute(httpPost)) {
 			// 执行请求
-			response = this.httpClient.execute(httpPost);
 			HttpResult httpResult = new HttpResult();
 			httpResult.setCode(response.getStatusLine().getStatusCode());
 			if (response.getEntity() != null) {
@@ -133,10 +111,6 @@ public class HttpService {
 				httpResult.setData(content);
 			}
 			return httpResult;
-		} finally {
-			if (response != null) {
-				response.close();
-			}
 		}
 	}
 

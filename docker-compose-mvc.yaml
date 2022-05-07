@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  app:
+    image: maven:3.8.5-jdk-8
+    command: sh -c "cd spring-mvc-example && mvn jetty:run"
+    ports:
+      - "8080:8080"
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - /tmp/docker-m2cache:/root/.m2:rw # /tmp/docker-desktop-root/containers/services/docker/tmp/upper

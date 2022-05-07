@@ -1,0 +1,42 @@
+version: "3.7"
+
+services:
+  app:
+    image: maven:3.8.5-jdk-8
+    command: sh -c "cd spring-mybatis-example && mvn tomcat8:run"
+    ports:
+#      - "8080:8080"
+      - "9190:9190"
+    working_dir: /app
+    depends_on:
+      - db
+      - cache
+    volumes:
+      - ./:/app
+      - /tmp/docker-m2cache:/root/.m2:rw # /tmp/docker-desktop-root/containers/services/docker/tmp/upper
+  db:
+    image: mysql:8.0.23
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ALLOW_EMPTY_PASSWORD=false
+      - MYSQL_USER=mysql-db
+      - MYSQL_PASSWORD=mysql-db
+      - MYSQL_DATABASE=test_db
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - mysql_config:/etc/mysql/conf.d
+      - "./spring-mybatis-example/db/schema.sql:/docker-entrypoint-initdb.d/1.sql"
+  cache:
+    image: redis:7.0-alpine3.15
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    volumes:
+      - cache:/data
+volumes:
+  mysql_data:
+  mysql_config:
+  cache:

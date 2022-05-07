@@ -1,61 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lrs.mapper.AreaMapper">
-	<!-- SQL片段使用：www.mybatis.org/mybatis-3/zh/sqlmap-xml.html#sql -->
-	<sql id="columnSql">
-		${alias}.id,${alias}.parent_id,${alias}.name,${alias}.short_name,
-		${alias}.longitude,${alias}.latitude,${alias}.level,${alias}.sort,${alias}.status
-	</sql>
-	<!-- MySQL的insert语句不可以使用别名 -->
-	<sql id="insertColumnSql">
-		id,parent_id,name,short_name,longitude,latitude,level,sort,status
-	</sql>
+    <!-- SQL片段使用：www.mybatis.org/mybatis-3/zh/sqlmap-xml.html#sql -->
+    <sql id="columnSql">
+        ${alias}.id,${alias}.parent_id,${alias}.name,${alias}.short_name,
+        ST_LONGITUDE(${alias}.coordinate) AS longitude, ST_LATITUDE(${alias}.coordinate) AS latitude,
+        ${alias}.level,${alias}.sort,${alias}.status
+    </sql>
+    <!-- MySQL的insert语句不可以使用别名 -->
+    <sql id="insertColumnSql">
+        id,parent_id,name,short_name,`coordinate`,level,sort,status
+    </sql>
 
-	<select id="queryById" resultType="Area">
-		SELECT
-		<include refid="columnSql">
-			<property name="alias" value="t1" />
-		</include>
-		FROM tb_area t1 WHERE t1.id=#{id}
-	</select>
+    <select id="queryById" resultType="Area">
+        SELECT
+        <include refid="columnSql">
+            <property name="alias" value="t1"/>
+        </include>
+        FROM tb_area t1 WHERE t1.id=#{id}
+    </select>
 
-	<insert id="insert" parameterType="Area">
-		INSERT INTO tb_area(
-		<include refid="insertColumnSql" />
-		)
-		VALUES(#{id},#{parentId},#{name},#{shortName},#{longitude},#{latitude},#{level},#{sort},#{status})
-	</insert>
+    <insert id="insert" parameterType="Area">
+        INSERT INTO tb_area(
+        <include refid="insertColumnSql"/>
+        )
+        VALUES(#{id},#{parentId},#{name},#{shortName},
+        ST_SRID(POINT(#{longitude},#{latitude}), 4326),
+        #{level},#{sort},#{status})
+    </insert>
 
-	<select id="queryByParentId" resultType="Area">
-		SELECT
-		<include refid="columnSql" >
-			<property name="alias" value="t1"/>
-		</include>
-		FROM tb_area t1 WHERE t1.parent_id=#{parentId} ORDER BY t1.id ASC
-	</select>
+    <select id="queryByParentId" resultType="Area">
+        SELECT
+        <include refid="columnSql">
+            <property name="alias" value="t1"/>
+        </include>
+        FROM tb_area t1 WHERE t1.parent_id=#{parentId} ORDER BY t1.id ASC
+    </select>
 
-	<update id="update" parameterType="Area">
-		UPDATE tb_area
-		<set>
-			<if test="parentId!=null">parent_id=#{parentId},</if>
-			<if test="name!=null and name!=''">name=#{name},</if>
-			<if test="shortName!=null and shortName!=''">short_name=#{shortName},</if>
-			<if test="longitude!=null">longitude=#{longitude},</if>
-			<if test="latitude!=null ">latitude=#{latitude},</if>
-			<if test="level!=null">level=#{level},</if>
-			<if test="sort!=null">sort=#{sort},</if>
-			<if test="status!=null">status=#{status}</if>
-		</set>
-		WHERE id=#{id}
-	</update>
+    <update id="update" parameterType="Area">
+        UPDATE tb_area
+        <set>
+            <if test="parentId!=null">parent_id=#{parentId},</if>
+            <if test="name!=null and name!=''">name=#{name},</if>
+            <if test="shortName!=null and shortName!=''">short_name=#{shortName},</if>
+            <if test="longitude!=null and latitude!=null">
+                coordinate=ST_SRID(POINT(#{longitude},#{latitude}), 4326),
+            </if>
+            <if test="level!=null">level=#{level},</if>
+            <if test="sort!=null">sort=#{sort},</if>
+            <if test="status!=null">status=#{status}</if>
+        </set>
+        WHERE id=#{id}
+    </update>
 
-	<delete id="delete">
-		DELETE FROM tb_area WHERE
-		id IN
-		<foreach collection="array" separator="," open="(" close=")"
-			item="id">
-			#{id}
-		</foreach>
-	</delete>
+    <delete id="delete">
+        DELETE FROM tb_area WHERE
+        id IN
+        <foreach collection="array" separator="," open="(" close=")"
+                 item="id">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>

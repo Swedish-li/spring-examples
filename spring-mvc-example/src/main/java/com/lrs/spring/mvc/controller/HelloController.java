@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +39,7 @@ public class HelloController {
 
         Map<String, Object> map = new HashMap<>();
         map.put("name", "Swedish-li");
-        map.put("year", 2018);
+        map.put("year", DateFormat.getInstance().format(time));
         map.put("msg", msg);
 
         return map;

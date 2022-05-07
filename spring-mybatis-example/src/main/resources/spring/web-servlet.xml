@@ -14,8 +14,8 @@
 			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
 				<constructor-arg value="UTF-8" />
 			</bean>
-			<bean class="org.springframework.http.converter.BufferedImageHttpMessageConverter"></bean>
-			<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"></bean>
+			<bean class="org.springframework.http.converter.BufferedImageHttpMessageConverter"/>
+			<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	<!-- SpringMVC上传文件时，需要配置MultipartResolver处理器 -->

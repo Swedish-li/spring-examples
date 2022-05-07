@@ -17,9 +17,12 @@ import java.util.List;
 @Configuration
 @EnableWebMvc
 @ComponentScan(value = "com.lrs.spring.mvc",
-        includeFilters = {@ComponentScan.Filter({Controller.class,
-                RestController.class,
-                ControllerAdvice.class})},
+        includeFilters = {@ComponentScan.Filter(
+                {
+                        Controller.class,
+                        RestController.class,
+                        ControllerAdvice.class
+                })},
         useDefaultFilters = false)
 public class MvcConfig implements WebMvcConfigurer {
 

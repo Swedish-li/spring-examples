@@ -27,18 +27,29 @@ public class AreaServiceTest extends AbstractJUnit4SpringContextTests {
     private final Integer testParentId;
 
     {
-        testId = 2342334;
-        testParentId = -1;
+        testId = 2342;
+        testParentId = 1234;
+    }
+
+    private void createArea() {
+        final Area area = new Area(testParentId);
+        area.setId(888);
+        area.setLatitude(11F);
+        area.setLongitude(22F);
+        areaService.saveArea(area);
     }
 
     @Test
     public void test0QueryAreas() {
+        createArea();
         List<Area> areas = areaService.queryAreas(testParentId);
         Area area = areas.get(0);
 
         assertThat(areas.size(), is(1));
-        assertThat(area.getId(), is(1));
-        assertThat(area.getParentId(), is(-1));
+        assertThat(area.getId(), is(888));
+        assertThat(area.getParentId(), is(testParentId));
+
+        areaService.delete(888);
 
     }
 
@@ -48,9 +59,9 @@ public class AreaServiceTest extends AbstractJUnit4SpringContextTests {
         area1.setId(testId);
         area1.setName("英国");
         area1.setShortName("英");
-        area1.setParentId(-1);
-        area1.setLongitude(22334.2F);
-        area1.setLatitude(1112.2F);
+        area1.setParentId(12);
+        area1.setLongitude(100.2F);
+        area1.setLatitude(12.2F);
         area1.setLevel(0);
         area1.setSort(0);
         area1.setStatus(1);
@@ -66,7 +77,7 @@ public class AreaServiceTest extends AbstractJUnit4SpringContextTests {
         assertThat(area.getId(), is(testId));
         assertThat(area.getName(), equalTo("英国"));
         assertThat(area.getShortName(), equalTo("英"));
-        assertThat(area.getParentId(), is(-1));
+        assertThat(area.getParentId(), is(12));
     }
 
     @Test
@@ -76,8 +87,10 @@ public class AreaServiceTest extends AbstractJUnit4SpringContextTests {
         area1.setName("英国22222");
         area1.setShortName("英1");
         area1.setParentId(2);
-        area1.setLongitude(1111.0F);
-        area1.setLatitude(122222.2F);
+        // (-180.000000, 180.000000].
+        area1.setLongitude(111.0F);
+//        within [-90.000000, 90.000000].
+        area1.setLatitude(80.2F);
         area1.setLevel(2);
         area1.setSort(4);
         area1.setStatus(2);
